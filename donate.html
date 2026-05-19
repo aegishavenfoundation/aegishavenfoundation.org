@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Donate to Aegis Haven Foundation - Support vulnerable children and persons with disabilities in South Sudan.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate — Aegis Haven Foundation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy: #0a2540;
+            --navy-light: #143d5f;
+            --teal: #0d7377;
+            --teal-light: #14a085;
+            --orange: #e67e22;
+            --orange-light: #f39c12;
+            --dark: #0a1628;
+            --light: #f8f9fa;
+            --cream: #faf7f2;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --shadow: 0 10px 40px rgba(10, 37, 64, 0.1);
+            --shadow-hover: 0 20px 60px rgba(10, 37, 64, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); line-height: 1.7; overflow-x: hidden; background: var(--cream); }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 600; line-height: 1.2; }
+
+        /* ============================================
+           NAVBAR
+           ============================================ */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(255,255,255,0.97); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(10, 37, 64, 0.08); transition: var(--transition);
+        }
+        .navbar.scrolled { box-shadow: var(--shadow); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0.75rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo-img { width: 55px; height: 55px; object-fit: contain; border-radius: 12px; }
+        .logo-text-group { display: flex; flex-direction: column; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--navy); line-height: 1.2; }
+        .logo-tagline { font-size: 0.7rem; color: var(--orange); font-weight: 500; letter-spacing: 0.5px; font-style: italic; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.9rem; position: relative; transition: var(--transition); }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--teal); transition: var(--transition); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover { color: var(--teal); }
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--navy); cursor: pointer; }
+
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--teal); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: var(--transition); }
+        .back-link:hover { color: var(--navy); }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .donate-hero {
+            min-height: 50vh; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            position: relative; overflow: hidden; padding: 100px 2rem 4rem; text-align: center;
+        }
+        .donate-hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(13, 115, 119, 0.15) 0%, transparent 70%); border-radius: 50%; }
+        .donate-hero::after { content: ''; position: absolute; bottom: -30%; left: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(230, 126, 34, 0.1) 0%, transparent 70%); border-radius: 50%; }
+        .donate-hero-content { position: relative; z-index: 1; max-width: 700px; }
+        .donate-hero .heart-icon { display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: linear-gradient(135deg, var(--orange), var(--orange-light)); border-radius: 50%; margin-bottom: 1.5rem; animation: heartbeat 1.5s ease-in-out infinite; }
+        .donate-hero .heart-icon i { color: white; font-size: 2rem; }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10% { transform: scale(1.15); }
+            20% { transform: scale(1); }
+            30% { transform: scale(1.15); }
+            40% { transform: scale(1); }
+        }
+        .donate-hero h1 { font-size: 3rem; color: var(--white); margin-bottom: 1rem; }
+        .donate-hero p { color: rgba(255,255,255,0.8); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* ============================================
+           MAIN DONATION AREA
+           ============================================ */
+        .donate-main { max-width: 1100px; margin: 0 auto; padding: 0 2rem 4rem; margin-top: -2rem; position: relative; z-index: 2; }
+        .donate-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+        /* Left Panel - Info */
+        .info-panel { display: flex; flex-direction: column; gap: 1.5rem; }
+        .info-card { background: var(--white); padding: 1.75rem; border-radius: 20px; box-shadow: var(--shadow); transition: var(--transition); }
+        .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+        .info-card h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+        .info-card h3 i { color: var(--teal); font-size: 1.2rem; }
+        .impact-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+        .impact-list li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-light); }
+        .impact-list li i { color: var(--teal); width: 20px; text-align: center; }
+        .info-note { font-size: 0.85rem; color: var(--text-light); padding: 1rem; background: var(--cream); border-radius: 12px; }
+        .stat-row { display: flex; gap: 1.5rem; }
+        .stat-box { flex: 1; text-align: center; padding: 1rem; background: var(--cream); border-radius: 12px; }
+        .stat-box .number { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--teal); }
+        .stat-box .label { font-size: 0.75rem; color: var(--text-light); }
+
+        /* Right Panel - Form */
+        .form-panel { background: var(--white); padding: 2.5rem; border-radius: 20px; box-shadow: var(--shadow-hover); }
+        .form-header { text-align: center; margin-bottom: 2rem; }
+        .form-header h2 { font-size: 1.6rem; color: var(--navy); margin-bottom: 0.5rem; }
+        .form-header p { font-size: 0.85rem; color: var(--text-light); }
+
+        /* Donation Type */
+        .donation-type { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; background: var(--cream); padding: 0.5rem; border-radius: 14px; }
+        .type-label { flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem; border-radius: 10px; cursor: pointer; transition: var(--transition); font-weight: 500; font-size: 0.9rem; border: 2px solid transparent; }
+        .type-label input[type="radio"] { display: none; }
+        .type-label:has(input:checked) { background: var(--white); border-color: var(--teal); color: var(--teal); box-shadow: 0 2px 8px rgba(13,115,119,0.15); }
+        .type-label:hover:not(:has(input:checked)) { border-color: var(--teal-light); }
+
+        /* Amount Buttons */
+        .amount-section { margin-bottom: 1.5rem; }
+        .amount-label { font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 0.75rem; display: block; }
+        .amount-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
+        .amount-btn { padding: 1rem; border: 2px solid #e2e8f0; background: var(--white); border-radius: 12px; font-weight: 700; font-size: 1.1rem; color: var(--navy); cursor: pointer; transition: var(--transition); font-family: 'Inter', sans-serif; }
+        .amount-btn:hover { border-color: var(--teal); color: var(--teal); }
+        .amount-btn.active { background: linear-gradient(135deg, var(--teal), var(--teal-light)); color: var(--white); border-color: var(--teal); box-shadow: 0 4px 15px rgba(13, 115, 119, 0.3); }
+
+        .custom-amount { display: flex; align-items: center; border: 2px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: var(--transition); }
+        .custom-amount:focus-within { border-color: var(--teal); }
+        .custom-amount .currency { padding: 0 1rem; font-weight: 700; font-size: 1.2rem; color: var(--navy); border-right: 2px solid #e2e8f0; }
+        .custom-amount input { flex: 1; padding: 1rem; border: none; outline: none; font-size: 1rem; font-family: 'Inter', sans-serif; }
+
+        /* Donor Details */
+        .form-section { margin-bottom: 1.5rem; }
+        .form-section h4 { font-size: 1rem; color: var(--navy); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--cream); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 0.85rem 1rem; border: 2px solid #e2e8f0; border-radius: 12px;
+            font-family: 'Inter', sans-serif; font-size: 0.9rem; transition: var(--transition); background: var(--white);
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13, 115, 119, 0.1);
+        }
+        .form-group.full-width { grid-column: 1 / -1; }
+
+        /* Payment Methods */
+        .payment-options { display: flex; flex-direction: column; gap: 0.75rem; }
+        .payment-option {
+            display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 2px solid #e2e8f0;
+            border-radius: 12px; cursor: pointer; transition: var(--transition);
+        }
+        .payment-option:hover { border-color: var(--teal-light); }
+        .payment-option input[type="radio"] { display: none; }
+        .payment-option:has(input:checked) { border-color: var(--teal); background: rgba(13,115,119,0.03); }
+        .payment-option .pay-icon { width: 40px; height: 40px; background: var(--cream); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--navy); }
+        .payment-option .pay-info { flex: 1; }
+        .payment-option .pay-info .pay-name { font-weight: 600; font-size: 0.9rem; color: var(--navy); }
+        .payment-option .pay-info .pay-desc { font-size: 0.8rem; color: var(--text-light); }
+        .payment-option .pay-check { width: 22px; height: 22px; border: 2px solid #e2e8f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+        .payment-option:has(input:checked) .pay-check { background: var(--teal); border-color: var(--teal); color: white; font-size: 0.7rem; }
+
+        /* Submit Button */
+        .btn-submit {
+            width: 100%; padding: 1.2rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1.1rem;
+            border: none; cursor: pointer; background: linear-gradient(135deg, var(--orange), var(--orange-light));
+            color: var(--white); box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            transition: var(--transition); font-family: 'Inter', sans-serif;
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(230, 126, 34, 0.5); }
+        .btn-submit:active { transform: translateY(0); }
+
+        .secure-note { text-align: center; margin-top: 1rem; font-size: 0.8rem; color: var(--text-light); }
+        .secure-note i { color: var(--teal); margin-right: 0.25rem; }
+
+        /* ============================================
+           THANK YOU MESSAGE
+           ============================================ */
+        .thank-you { display: none; text-align: center; padding: 3rem 1rem; }
+        .thank-you.active { display: block; animation: fadeInUp 0.6s ease; }
+        .thank-you-icon { width: 100px; height: 100px; background: linear-gradient(135deg, var(--teal), var(--teal-light)); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; animation: scaleIn 0.5s ease 0.2s both; }
+        .thank-you-icon i { color: white; font-size: 2.5rem; }
+        .thank-you h2 { font-size: 2rem; color: var(--navy); margin-bottom: 0.75rem; }
+        .thank-you p { color: var(--text-light); font-size: 1rem; max-width: 400px; margin: 0 auto 1.5rem; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* ============================================
+           PROGRESS BAR
+           ============================================ */
+        .progress-section { max-width: 1100px; margin: 0 auto 4rem; padding: 0 2rem; }
+        .progress-card { background: var(--white); padding: 2rem; border-radius: 20px; box-shadow: var(--shadow); text-align: center; }
+        .progress-card h3 { font-size: 1.3rem; color: var(--navy); margin-bottom: 1.5rem; }
+        .progress-bar { width: 100%; height: 16px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 1rem; }
+        .progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--teal), var(--teal-light), var(--orange-light)); border-radius: 10px; transition: width 1.5s ease; position: relative; }
+        .progress-fill::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 40px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4)); animation: progressShine 2s ease-in-out infinite; }
+        @keyframes progressShine { 0% { transform: translateX(0); } 100% { transform: translateX(40px); opacity: 0; } }
+        .progress-stats { display: flex; justify-content: space-between; font-weight: 600; font-size: 1rem; }
+        .raised { color: var(--teal); }
+        .goal { color: var(--text-light); }
+        .progress-subtitle { font-size: 0.9rem; color: var(--text-light); margin-top: 0.75rem; }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer { background: var(--navy); color: var(--white); padding: 3rem 2rem 1.5rem; }
+        .footer-container { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .footer-brand { margin-bottom: 2rem; }
+        .footer-brand .logo { justify-content: center; margin-bottom: 1rem; }
+        .footer-brand p { color: rgba(255,255,255,0.7); font-size: 0.9rem; max-width: 500px; margin: 0 auto; }
+        .footer-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 2rem 0 1.5rem; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: var(--transition); }
+        .footer-links a:hover { color: var(--orange-light); }
+        .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+        .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); text-decoration: none; transition: var(--transition); }
+        .social-links a:hover { background: var(--teal); transform: translateY(-3px); }
+        .footer-bottom { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 1.5rem 2rem; gap: 0; box-shadow: var(--shadow); }
+            .nav-links.active { display: flex; }
+            .nav-links li { width: 100%; border-bottom: 1px solid rgba(10, 37, 64, 0.06); }
+            .nav-links a { display: block; padding: 0.875rem 0; }
+            .mobile-menu-btn { display: block; }
+            .donate-hero h1 { font-size: 2rem; }
+            .donate-grid { grid-template-columns: 1fr; }
+            .form-panel { padding: 1.5rem; }
+            .amount-buttons { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+            .amount-btn { padding: 0.75rem; font-size: 0.95rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .stat-row { gap: 0.75rem; }
+            .progress-stats { font-size: 0.85rem; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container { padding: 0.6rem 1rem; }
+            .donate-hero { padding: 90px 1rem 3rem; }
+            .donate-hero h1 { font-size: 1.6rem; }
+            .form-panel { padding: 1.25rem; }
+            .amount-buttons { grid-template-columns: repeat(2, 1fr); }
+            .payment-option { padding: 0.75rem; }
+            .progress-section, .donate-main { padding-left: 1rem; padding-right: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="aegis_haven_logo.png" alt="Aegis Haven Foundation Logo" class="logo-img">
+                <div class="logo-text-group">
+                    <div class="logo-text" style="color: var(--navy);">Aegis Haven Foundation</div>
+                    <div class="logo-tagline">-- A haven for all --</div>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Back to Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Programs</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="donate-hero">
+        <div class="donate-hero-content">
+            <div class="heart-icon"><i class="fas fa-heart"></i></div>
+            <h1>Your Gift Changes Lives</h1>
+            <p>Every donation directly supports vulnerable children and persons with disabilities in South Sudan. Together, we can build a future of protection, dignity, and opportunity.</p>
+        </div>
+    </section>
+
+    <!-- Main Donation Area -->
+    <div class="donate-main">
+        <div class="donate-grid">
+            <!-- Left: Info Panel -->
+            <div class="info-panel">
+                <div class="info-card">
+                    <h3><i class="fas fa-chart-pie"></i> Where Your Money Goes</h3>
+                    <ul class="impact-list">
+                        <li><i class="fas fa-shield-alt"></i> <strong>Child Protection Programs</strong> - 40%</li>
+                        <li><i class="fas fa-heart"></i> <strong>GBV Prevention & Response</strong> - 25%</li>
+                        <li><i class="fas fa-wheelchair"></i> <strong>Disability Inclusion</strong> - 20%</li>
+                        <li><i class="fas fa-users"></i> <strong>Community Outreach</strong> - 10%</li>
+                        <li><i class="fas fa-cogs"></i> <strong>Administration</strong> - 5%</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-hand-holding-usd"></i> Your Impact</h3>
+                    <div class="stat-row">
+                        <div class="stat-box">
+                            <div class="number">$25</div>
+                            <div class="label">School supplies for 1 child</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">$50</div>
+                            <div class="label">1 month safe shelter</div>
+                        </div>
+                    </div>
+                    <div class="stat-row" style="margin-top: 0.75rem;">
+                        <div class="stat-box">
+                            <div class="number">$75</div>
+                            <div class="label">Psychosocial counseling</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">$100</div>
+                            <div class="label">Mobility aids & access</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-note">
+                    <i class="fas fa-info-circle" style="color: var(--teal); margin-right: 0.25rem;"></i>
+                    Aegis Haven Foundation is a registered non-profit under the NGO Registration Act 2026. All donations are tax-deductible where applicable. A receipt will be emailed to you.
+                </div>
+            </div>
+
+            <!-- Right: Form Panel -->
+            <div class="form-panel">
+                <!-- Form View -->
+                <div id="donationForm">
+                    <div class="form-header">
+                        <h2>Make Your Donation</h2>
+                        <p>Choose your amount and payment method below</p>
+                    </div>
+
+                    <form id="donateForm" action="https://formspree.io/f/xnqevwje" method="POST">
+                        <input type="hidden" name="_subject" value="New Donation - Aegis Haven Foundation">
+
+                        <!-- Donation Type -->
+                        <div class="donation-type">
+                            <label class="type-label">
+                                <input type="radio" name="donationType" value="one-time" checked>
+                                <i class="fas fa-gift"></i> <span>One-time</span>
+                            </label>
+                            <label class="type-label">
+                                <input type="radio" name="donationType" value="monthly">
+                                <i class="fas fa-redo"></i> <span>Monthly</span>
+                            </label>
+                        </div>
+
+                        <!-- Amount Selection -->
+                        <div class="amount-section">
+                            <label class="amount-label">Select Amount (USD)</label>
+                            <div class="amount-buttons">
+                                <button type="button" class="amount-btn" data-amount="25">$25</button>
+                                <button type="button" class="amount-btn" data-amount="50">$50</button>
+                                <button type="button" class="amount-btn active" data-amount="100">$100</button>
+                                <button type="button" class="amount-btn" data-amount="250">$250</button>
+                                <button type="button" class="amount-btn" data-amount="500">$500</button>
+                                <button type="button" class="amount-btn" data-amount="1000">$1K</button>
+                            </div>
+                            <div class="custom-amount">
+                                <span class="currency">$</span>
+                                <input type="number" name="amount" id="amountInput" placeholder="Custom amount" min="1" value="100">
+                            </div>
+                        </div>
+
+                        <!-- Donor Details -->
+                        <div class="form-section">
+                            <h4><i class="fas fa-user" style="color: var(--teal); margin-right: 0.5rem;"></i>Your Information</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" required placeholder="John">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" required placeholder="Doe">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="email" required placeholder="john@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="+XXX XXX XXXX">
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="country">Country</label>
+                                <select id="country" name="country">
+                                    <option value="">Select your country</option>
+                                    <option value="SS">South Sudan</option>
+                                    <option value="US">United States</option>
+                                    <option value="GB">United Kingdom</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="KE">Kenya</option>
+                                    <option value="UG">Uganda</option>
+                                    <option value="ET">Ethiopia</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="FR">France</option>
+                                    <option value="NL">Netherlands</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="message">Message (Optional)</label>
+                                <textarea id="message" name="message" rows="2" placeholder="Leave a message of support..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="form-section">
+                            <h4><i class="fas fa-credit-card" style="color: var(--teal); margin-right: 0.5rem;"></i>Payment Method</h4>
+                            <div class="payment-options">
+                                <label class="payment-option">
+                                    <input type="radio" name="paymentMethod" value="paypal" checked>
+                                    <div class="pay-icon"><i class="fab fa-paypal"></i></div>
+                                    <div class="pay-info">
+                                        <div class="pay-name">PayPal</div>
+                                        <div class="pay-desc">Pay securely with your PayPal account</div>
+                                    </div>
+                                    <div class="pay-check"><i class="fas fa-check"></i></div>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="paymentMethod" value="card">
+                                    <div class="pay-icon"><i class="fas fa-credit-card"></i></div>
+                                    <div class="pay-info">
+                                        <div class="pay-name">Credit/Debit Card</div>
+                                        <div class="pay-desc">Visa, Mastercard, Amex</div>
+                                    </div>
+                                    <div class="pay-check"><i class="fas fa-check"></i></div>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="paymentMethod" value="bank">
+                                    <div class="pay-icon"><i class="fas fa-university"></i></div>
+                                    <div class="pay-info">
+                                        <div class="pay-name">Bank Transfer</div>
+                                        <div class="pay-desc">Direct bank transfer details</div>
+                                    </div>
+                                    <div class="pay-check"><i class="fas fa-check"></i></div>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="paymentMethod" value="mobile">
+                                    <div class="pay-icon"><i class="fas fa-mobile-alt"></i></div>
+                                    <div class="pay-info">
+                                        <div class="pay-name">Mobile Money</div>
+                                        <div class="pay-desc">M-Pesa, MTN Mobile Money</div>
+                                    </div>
+                                    <div class="pay-check"><i class="fas fa-check"></i></div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-heart"></i> Complete Donation
+                        </button>
+                        <p class="secure-note"><i class="fas fa-lock"></i> Secure donation processed with SSL encryption. Tax receipt emailed.</p>
+                    </form>
+                </div>
+
+                <!-- Thank You View -->
+                <div class="thank-you" id="thankYou">
+                    <div class="thank-you-icon"><i class="fas fa-check"></i></div>
+                    <h2>Thank You for Your Generosity!</h2>
+                    <p>Your donation has been received and will directly support vulnerable children and persons with disabilities in South Sudan. A receipt has been sent to your email.</p>
+                    <a href="index.html" class="btn-submit" style="max-width: 300px; margin: 0 auto;"><i class="fas fa-home"></i> Return to Homepage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Section -->
+    <div class="progress-section">
+        <div class="progress-card">
+            <h3><i class="fas fa-bullseye" style="color: var(--teal); margin-right: 0.5rem;"></i>This Month's Fundraising Goal</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" data-width="65"></div>
+            </div>
+            <div class="progress-stats">
+                <span class="raised">$6,500 raised</span>
+                <span class="goal">Goal: $10,000</span>
+            </div>
+            <p class="progress-subtitle">Join <strong>127 donors</strong> who have already contributed this month</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo">
+                    <img src="aegis_haven_logo.png" alt="Aegis Haven Foundation" class="logo-img" style="width: 50px; height: 50px;">
+                    <div class="logo-text-group">
+                        <div class="logo-text" style="color: white;">Aegis Haven Foundation</div>
+                        <div class="logo-tagline">-- A haven for all --</div>
+                    </div>
+                </div>
+                <p>A non-profit dedicated to the protection, dignity, and inclusion of vulnerable populations, with a focus on children and persons with disabilities.</p>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#services">Programs</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="donate.html">Donate</a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61588945276863" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/haven_aegis?s=21" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/company/aegis-haven-foundation/about/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/aegishavenfoundation" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Aegis Haven Foundation. All rights reserved. Registered under NGO Registration Act 2026.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Amount buttons
+        const amountButtons = document.querySelectorAll('.amount-btn');
+        const amountInput = document.getElementById('amountInput');
+
+        amountButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                amountButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                amountInput.value = btn.dataset.amount;
+            });
+        });
+
+        amountInput.addEventListener('input', () => {
+            amountButtons.forEach(b => b.classList.remove('active'));
+        });
+
+        // Form submission
+        const form = document.getElementById('donateForm');
+        const formView = document.getElementById('donationForm');
+        const thankYou = document.getElementById('thankYou');
+
+        form.addEventListener('submit', function(e) {
+            // Let Formspree handle the submission
+            // Show thank you after brief delay
+            setTimeout(() => {
+                formView.style.display = 'none';
+                thankYou.classList.add('active');
+            }, 1000);
+        });
+
+        // Progress bar animation
+        const progressFill = document.querySelector('.progress-fill');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = progressFill.dataset.width || '65';
+                    progressFill.style.width = width + '%';
+                }
+            });
+        }, { threshold: 0.3 });
+        if (progressFill) observer.observe(progressFill.closest('.progress-section'));
+    </script>
+</body>
+</html>
