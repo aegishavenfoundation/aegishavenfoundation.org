@@ -593,16 +593,16 @@
         ];
 
         const SSP_AMOUNTS = [
-            { ssp: 32500, label: 'SS&pound;32,500' },
-            { ssp: 65000, label: 'SS&pound;65,000' },
-            { ssp: 130000, label: 'SS&pound;130K' },
-            { ssp: 325000, label: 'SS&pound;325K' },
-            { ssp: 650000, label: 'SS&pound;650K' },
-            { ssp: 1300000, label: 'SS&pound;1.3M' }
+            { ssp: 32500, label: 'SSP;32,500' },
+            { ssp: 65000, label: 'SSP;65,000' },
+            { ssp: 130000, label: 'SSP;130K' },
+            { ssp: 325000, label: 'SSP;325K' },
+            { ssp: 650000, label: 'SSP;650K' },
+            { ssp: 1300000, label: 'SSP;1.3M' }
         ];
 
         function formatSSP(value) {
-            return 'SS&pound;' + value.toLocaleString();
+            return 'SSP;' + value.toLocaleString();
         }
 
         function updateAmountButtons() {
@@ -615,10 +615,10 @@
             // Update label
             amountLabel.textContent = `Select Amount (${currentCurrency})`;
             // Update currency symbol
-            currencySymbol.innerHTML = currentCurrency === 'USD' ? '$' : 'SS&pound;';
+            currencySymbol.innerHTML = currentCurrency === 'USD' ? '$' : 'SSP;';
             // Update input placeholder
             amountInput.placeholder = `Enter amount in ${currentCurrency}`;
-            // Reset active button to default ($100 / SS£130K)
+            // Reset active button to default ($100 / SSP130K)
             buttons.forEach(b => b.classList.remove('active'));
             buttons[2].classList.add('active');
             amountInput.value = currentCurrency === 'USD' ? 100 : 130000;
